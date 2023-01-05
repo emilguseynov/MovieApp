@@ -15,16 +15,14 @@ struct Section: Hashable {
     func hash(into hasher: inout Hasher) {
     }
     
-    enum ContentType: String {
-        case movies = "Popular Movies"
-        case tvShows = "Popular TV Shows"
-    }
-    
-    
     let type: ContentType
-    let items: [Result]
-    
+    var items: [Result]
     
 }
 
+enum ContentType: String {
+    case movies = "Popular Movies"
+    case tvShows = "Popular TV Shows"
+    case favorite = "Favorite"
+}
 

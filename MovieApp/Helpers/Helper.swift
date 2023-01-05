@@ -61,7 +61,4 @@ extension Bundle {
     }
 }
 
-enum ContentType: String {
-    case movie = "movie"
-    case tvShow = "tv"
-}
+

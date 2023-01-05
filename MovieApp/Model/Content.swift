@@ -31,6 +31,8 @@ struct Result: Decodable, Hashable {
     let adult: Bool?
     let originalTitle, releaseDate, title: String?
     let video: Bool?
+    
+    var forFavorites: Bool?
 
 }
 

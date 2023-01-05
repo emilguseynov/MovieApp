@@ -89,7 +89,7 @@ class ContentCell: UICollectionViewCell {
             posterImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: aspectRatio),
             
             nameLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 10),
-            nameLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: 20),
+            nameLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -20),
             
             releaseDateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
             releaseDateLabel.heightAnchor.constraint(equalToConstant: 12)

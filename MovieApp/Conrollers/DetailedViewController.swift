@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol FavoriteDelegate {
+    func didAddToFavorite(data: Result)
+}
+
 final class DetailedViewController: UIViewController {
     
     var url: URL!
@@ -15,6 +19,8 @@ final class DetailedViewController: UIViewController {
     var contentType: ContentType!
     var name: String!
     var votes = Double(0)
+    
+    var delegate: FavoriteDelegate?
     
     lazy var genresDictionary = [Int : String]()
     
@@ -114,7 +120,7 @@ final class DetailedViewController: UIViewController {
     }
     
     @objc func didTapBookmark() {
-        print("Saved")
+        delegate?.didAddToFavorite(data: data)
     }
     
     func watchNowButtonTapped() {
@@ -184,4 +190,11 @@ extension DetailedViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+extension DetailedViewController {
+    enum ContentType: String {
+        case movie = "movie"
+        case tvShow = "tv"
+    }
 }

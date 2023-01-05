@@ -121,8 +121,8 @@
 			children = (
 				C7671B362910210C00FEB214 /* Helpers */,
 				C785CD6728F84C2C00FFF14C /* Service */,
-				C785CD6228F842C500FFF14C /* Views */,
 				C785CD6028F8427D00FFF14C /* Model */,
+				C785CD6228F842C500FFF14C /* Views */,
 				C785CD6128F8428900FFF14C /* Conrollers */,
 				C785CD4A28F8305200FFF14C /* AppDelegate.swift */,
 				C785CD4C28F8305200FFF14C /* SceneDelegate.swift */,
@@ -173,10 +173,10 @@
 		C7ACD4AD294B059100705DC5 /* Detailed */ = {
 			isa = PBXGroup;
 			children = (
-				C7ACD4A92949E59700705DC5 /* WatchNowButtonCell.swift */,
 				C7ACD4B4294CBA6600705DC5 /* ImageCell.swift */,
 				C74B44E8294DC47A00BB46D9 /* NameCell.swift */,
 				C71C0C2A29508925001E3DC5 /* OverviewCell.swift */,
+				C7ACD4A92949E59700705DC5 /* WatchNowButtonCell.swift */,
 			);
 			path = Detailed;
 			sourceTree = "<group>";
