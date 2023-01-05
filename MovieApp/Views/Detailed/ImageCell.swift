@@ -9,6 +9,7 @@ import UIKit
 
 class ImageCell: UITableViewCell {
     let posterImageView = UIImageView()
+//    let posterImageLayer = CAGradientLayer()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -16,6 +17,13 @@ class ImageCell: UITableViewCell {
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true
         posterImageView.layer.cornerRadius = 12
+        
+//        posterImageLayer.startPoint = CGPoint(x: 0, y: 0.5)
+//        posterImageLayer.endPoint = CGPoint(x: 1, y: 0.5)
+//        posterImageView.layer.addSublayer(posterImageLayer)
+//
+//        let animationGroup = CAAnimationGroup()
+        
         
         contentView.backgroundColor = Colors.background
         contentView.addSubview(posterImageView)

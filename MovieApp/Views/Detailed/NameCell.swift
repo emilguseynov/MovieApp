@@ -39,7 +39,7 @@ class NameCell: UITableViewCell {
     }
     
     fileprivate func shortDescriptionSetup() {
-        shortDescriptionLabel = UILabel(text: "YYYY • GENRES", font: .boldSystemFont(ofSize: 14))
+        shortDescriptionLabel = UILabel(text: "YYYY • GENRES", font: .boldSystemFont(ofSize: 14), numberOfLines: 0)
         shortDescriptionLabel.textAlignment = .center
         shortDescriptionLabel.textColor = Colors.subtitle
     }
@@ -70,9 +70,9 @@ class NameCell: UITableViewCell {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -30),
             
-            shortDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            shortDescriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,constant: -30),
             shortDescriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             shortDescriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
             
