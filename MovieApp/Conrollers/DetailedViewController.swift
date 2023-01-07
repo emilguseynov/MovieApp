@@ -13,6 +13,8 @@ protocol FavoriteDelegate {
 
 final class DetailedViewController: UIViewController {
     
+    let tableView = UITableView()
+
     var url: URL!
     var data: Result
     
@@ -23,10 +25,9 @@ final class DetailedViewController: UIViewController {
     var delegate: FavoriteDelegate?
     
     lazy var genresDictionary = [Int : String]()
+        
+    // MARK: - Initialization
     
-    let tableView = UITableView()
-   
-//MARK: - init
     init(data: Result) {
         self.data = data
         
@@ -47,7 +48,14 @@ final class DetailedViewController: UIViewController {
     }
     
     
-//MARK: - viewDidLoad
+    // MARK: - Life Cycle
+    
+    override func loadView() {
+        super.loadView()
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     override func viewDidLoad() {
         
         navigationControllerSetup()
@@ -70,9 +78,35 @@ final class DetailedViewController: UIViewController {
         getListOfGenres()
     }
     
+    // MARK: - NavigationBar size setup
+    
+    override func willMove(toParent parent: UIViewController?) {
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    // MARK: - Public Methods
     
     
-    fileprivate func getListOfGenres() {
+    
+    // MARK: - Actions
+    
+    @objc func didTapBookmark() {
+        delegate?.didAddToFavorite(data: data)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func watchNowButtonTapped() {
+        var urlString = "https://www.themoviedb.org/\(contentType.rawValue)/\(data.id)-"
+        
+        urlString.append(name.lowercased().replacingOccurrences(of: " ", with: "-"))
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    private func getListOfGenres() {
         let genres = Bundle.main.decode(Genres.self, from: "genreIDs.json")
         
         for genre in genres.genres {
@@ -80,7 +114,7 @@ final class DetailedViewController: UIViewController {
         }
     }
     
-    fileprivate func createShortDescription() -> String {
+    private func createShortDescription() -> String {
         var shortDescriptionArray = [String]()
         if let releaseDate = data.releaseDate {
             
@@ -107,45 +141,21 @@ final class DetailedViewController: UIViewController {
         return shortDescriptionArray.joined(separator: " • ")
     }
     
-    fileprivate func navigationControllerSetup() {
+    private func navigationControllerSetup() {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back")
         navigationController?.navigationBar.tintColor = .gray
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "bookmark"),
             style: .plain,
             target: self,
             action: #selector(didTapBookmark))
     }
-    
-    @objc func didTapBookmark() {
-        delegate?.didAddToFavorite(data: data)
-    }
-    
-    func watchNowButtonTapped() {
-        var urlString = "https://www.themoviedb.org/\(contentType.rawValue)/\(data.id)-"
-        
-        urlString.append(name.lowercased().replacingOccurrences(of: " ", with: "-"))
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url)
-        }
-    }
-    
-//MARK: - NavigationBar size setup
-    override func willMove(toParent parent: UIViewController?) {
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    override func loadView() {
-        super.loadView()
-        navigationItem.largeTitleDisplayMode = .never
-        navigationController?.navigationBar.prefersLargeTitles = false
-    }
-
 }
+
 //MARK: - Delegate & DataSource
+
 extension DetailedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,7 +191,7 @@ extension DetailedViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0: return view.frame.width
@@ -189,7 +199,6 @@ extension DetailedViewController: UITableViewDelegate, UITableViewDataSource {
         default: return 100
         }
     }
-    
 }
 
 extension DetailedViewController {

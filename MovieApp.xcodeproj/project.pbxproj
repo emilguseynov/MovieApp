@@ -173,9 +173,9 @@
 		C7ACD4AD294B059100705DC5 /* Detailed */ = {
 			isa = PBXGroup;
 			children = (
+				C71C0C2A29508925001E3DC5 /* OverviewCell.swift */,
 				C7ACD4B4294CBA6600705DC5 /* ImageCell.swift */,
 				C74B44E8294DC47A00BB46D9 /* NameCell.swift */,
-				C71C0C2A29508925001E3DC5 /* OverviewCell.swift */,
 				C7ACD4A92949E59700705DC5 /* WatchNowButtonCell.swift */,
 			);
 			path = Detailed;

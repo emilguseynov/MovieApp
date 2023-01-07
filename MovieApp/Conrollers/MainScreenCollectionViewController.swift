@@ -112,7 +112,7 @@ final class MainScreenCollectionViewController: UICollectionViewController {
         return layout
     }
     
-    fileprivate func createMovieSection() -> NSCollectionLayoutSection{
+    fileprivate func createMovieSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
@@ -193,9 +193,7 @@ final class MainScreenCollectionViewController: UICollectionViewController {
     
     fileprivate func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Result>()
-        
         var movies, tvShows, favorite: Section!
-        
         let queue = DispatchQueue(label: "append-queue", attributes: .concurrent)
         
         queue.sync(flags: .barrier) {
@@ -238,9 +236,9 @@ final class MainScreenCollectionViewController: UICollectionViewController {
         
         let viewController = DetailedViewController(data: data)
         viewController.delegate = self
-
+        
         navigationController?.pushViewController(viewController, animated: true)
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
